@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+*{padding: 0; margin: 0;}
+.fl{float: left;}
+li{list-style: none;}
+textarea{resize: none;}
+.box{width: 780px; border-top: 9px solid #c0c0c0; border-right: 10px solid #c0c0c0; border-bottom: 10px solid #c0c0c0; border-left: 7px solid #C0C0C0; padding: 10px 10px 8px 10px; line-height: 30px; overflow: hidden; margin:0 auto; margin-top:50px;}
+#left,#right{width: 300px; height: 300px; border: none; padding: 10px; border: 1px dotted #000;font-size:18px; font-weight:bold; line-height:30px;}
+#left{ background: #efefd6; float: left;}
+#center{width: 136px; float: left;}
+#center input{width: 120px; height: 40px; display: block; background: #f76300; border: none; font-size: 18px; color: #fff; margin: 0 auto;}
+#center p{width: 136px; text-align: center; padding-top: 11px;}
+#center ul{padding: 23px 0 0 28px; display: none;}
+#center li{float: left; width: 8px; height: 18px; background: #efc663; margin-right: 2px;}
+#center ul .active{background: red;}
+#right{ background: #63eff7; float: left; overflow: auto; }
+</style>
+</head>
+<body style="overflow: hidden;">
+<div class="box">
+    <textarea id="left"  rows="" cols=""></textarea>
+    <div id="center">
+        <input id="button" type="button" value="把文字右移"/>
+        <p>
+            <span>0</span>
+            /
+            <span>0</span>
+        </p>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <textarea id="right" disabled="disabled" rows="" cols=""></textarea>
+</div>
+</body>
+<script type="text/javascript">
+var oLeftText=document.getElementById('left');
+var oBtn=document.getElementById('button');
+var oSpan1=document.getElementsByTagName('span')[0];
+var oSpan2=document.getElementsByTagName('span')[1];
+var oUl=document.getElementsByTagName('ul')[0];
+var oRightText=document.getElementById('right');
+var oUl=document.getElementsByTagName('ul')[0];
+var aLi=oUl.getElementsByTagName('li');
+var num=0;
+var len=aLi.length;
+oLeftText.value='吴伯凡说，IBM曾经把“知识”分成四个层级，最底层的叫数据，经过提炼的数据叫信息，从信息里归纳总结出的规律叫知识，知识再往上是智慧。所谓智慧，它不是某个具体的技巧、技能，而是一种态度和境界。所以，越是大佬越是喜欢哲学、文学的书。我自己的理解是，高手过招最终拼的都是内力！';
+oBtn.onclick=function(){
+    var str=oLeftText.value;
+    if(!str.length){
+        alert('您还没有输入');
+        return;
+    };
+    clearInterval(timer);
+    var num=0;
+    oSpan2.innerHTML=str.length;
+    oUl.style.display='block';
+    var timer=setInterval(function(){
+        oSpan1.innerHTML=0;
+        num++;
+        oLeftText.value=str.substring(num);
+        oRightText.value=str.substring(0,num);
+        oSpan1.innerHTML=num;
+        for(var i=0;i<len;i++){
+            aLi[i].className='';
+        };
+        aLi[num%len].className='active';
+        if(num==str.length){
+            clearInterval(timer);
+            oUl.style.display='none';
+        };
+    },50);
+};
+</script>
+</html>

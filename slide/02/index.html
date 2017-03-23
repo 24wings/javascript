@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>控制多组图片切换</title>
+<style>
+body{ margin:0; padding:0; background:url(images/bg.jpg) repeat; }
+.nr{ width:1400px; margin:0 auto; }
+.nr div.img1{ clear:both; }
+.nr div.img1,.nr div.img2{ width:680px; height:510px; float:left; border:5px solid #fff; position:relative; margin-right:10px; }
+.nr div span{ position:absolute; bottom:0; left:0; width:100%; background:rgba(0,0,0,0.7); color:#fff; text-align:center; font-size:14px; line-height:30px; }
+.an { width:250px; height:50px; float:left; padding:10px; margin-top:20px; margin-left:600px; }
+.an input{ margin-right:50px; }
+</style>
+<script>
+window.onload = function(){
+	//获取元素
+	var oAns = document.getElementById('ans');
+	var oAnx = document.getElementById('anx');
+	var oImg1 = document.getElementById('img1');
+	var oImg2 = document.getElementById('img2');
+	var oNum1 = document.getElementById('num1');
+	var oNum2 = document.getElementById('num2');
+	var oPic1 = document.getElementById('pic1');
+	var oPic2 = document.getElementById('pic2');
+	var aImg1 = ['images/1_1.jpg','images/1_2.jpg','images/1_3.jpg','images/1_4.jpg'];
+	var aImg2 = ['images/2_1.jpg','images/2_2.jpg','images/2_3.jpg'];
+	var num1 = 0;
+	var num2 = 0;
+	//初始化
+	img1.src = aImg1[0];
+	img2.src = aImg2[0];
+	oNum1.innerHTML = num1+1 + '/' + aImg1.length;
+	oNum2.innerHTML = num2+1 + '/' + aImg2.length;
+	//
+	function Fn1(){
+		oImg1.src = aImg1[num1];
+		oNum1.innerHTML = num1+1 + '/' + aImg1.length;
+		}
+	function Fn2(){
+		oImg2.src = aImg2[num2];
+			oNum2.innerHTML = num2+1 + '/' + aImg2.length;
+		}
+	oAns.onclick = function(){
+		if (num1==0){
+			num1=aImg1.length-1;
+			Fn1();
+		}else{
+			num1--;
+			Fn1();
+		}
+		if (num2==0){
+			num2=aImg2.length-1;
+			Fn2()
+		}else{
+			num2--;
+			Fn2()
+		}
+	}
+	oAnx.onclick = function(){
+		if (num1+1<aImg1.length){
+			num1++;
+			Fn1();
+		}else{
+			num1=0;
+			Fn1();
+		}
+		if (num2+1<aImg2.length){
+			num2++;
+			Fn2();
+		}else{
+			num2=0;
+			Fn2();
+		}
+	}
+	oImg1.onclick = function(){
+		if(num1+1 < aImg1.length){
+			num1++;
+			Fn1();
+		}else{
+			num1=0;
+			Fn1();	
+		}
+	}
+	oImg2.onclick = function(){
+		if(num2+1 < aImg2.length){
+			num2++;
+			Fn2();
+		}else{
+			num2=0;
+			Fn2();	
+		}
+	}
+}
+</script>
+</head>
+<body>
+<div class="nr">
+  <div class="an"><input id="ans" name="" type="button" value="上一组" /><input id="anx" name="" type="button" value="下一组" /></div>
+  <div id="pic1" class="img1"><img id="img1" src="images/csh.gif" width="680" height="510" alt="" /><span id="num1">数据载入中</span></div>
+  <div id="pic2" class="img2"><img id="img2" src="images/csh.gif" width="680" height="510" alt="" /><span id="num2">数据载入中</span></div>
+</div>
+</body>
+</html>

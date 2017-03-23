@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>图片随机排序</title>
+<style>
+*{padding: 0; margin: 0;}
+li{list-style: none;}
+.clearfix:after{content: ''; display: block; clear: both;}
+.box{background: #f1f1f1; margin: 0 auto; padding: 30px 30px 24px 28px; width: 1206px; overflow: hidden; font-family: "微软雅黑";}
+#top{width: 246px; margin: 0 auto;}
+#top input{width: 116px; height: 36px; background: #009999; color: #fff; border-right: 2px solid #9c9c9c; border-bottom: 2px solid #9c9c9c;}
+.cont{padding-top: 20px;}
+#imgList{width: 1208px;}
+#imgList li{float: left; width: 302px;}
+#imgList li a{display: block; width: 280px; border: 10px solid #fff; text-align: center; color: #006699; text-decoration: none;} 
+#imgList li img{width: 280px; height: 180px;}
+#imgList li p{font-size: 18px; font-weight: bold; height: 43px; line-height: 43px;}
+</style>
+</head>
+<body>
+  <div class="box">
+      <div id="top">
+          <input type="button" value="从大到小"/>
+          <input type="button" value="随机排序" />
+      </div>
+      <div class="cont">
+          <ul id="imgList" class="clearfix">
+              <li>
+                  <a href="#">
+                      <img src="img/num12/1.jpg"/>
+                      <p>1-温馨办公</p>
+                  </a>
+              </li>
+              <li>
+                  <a href="#">
+                      <img src="img/num12/2.jpg"/>
+                      <p>2-游戏桌面</p>
+                  </a>
+              </li>
+              <li>
+                  <a href="#">
+                      <img src="img/num12/3.jpg"/>
+                      <p>3-汽车摇滚</p>
+                  </a>
+              </li>
+              <li>
+                  <a href="#">
+                      <img src="img/num12/4.jpg"/>
+                      <p>4-狭路相逢</p>
+                  </a>
+              </li>
+              <li>
+                  <a href="#">
+                      <img src="img/num12/5.jpg"/>
+                      <p>5-棒球小子</p>
+                  </a>
+              </li>
+              <li>
+                  <a href="#">
+                      <img src="img/num12/6.jpg"/>
+                      <p>6-球鞋动力</p>
+                  </a>
+              </li>
+              <li>
+                  <a href="#">
+                      <img src="img/num12/7.jpg"/>
+                      <p>7-游戏官网</p>
+                  </a>
+              </li>
+              <li>
+                  <a href="#">
+                      <img src="img/num12/8.jpg"/>
+                      <p>8-指尖社区</p>
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+</body>
+<script type="text/javascript">
+	var oDiv=document.getElementById('top');
+	var aInput=oDiv.getElementsByTagName('input');
+	var imgList=document.getElementById('imgList');
+	var aLi=imgList.getElementsByTagName('li');
+	var aP=imgList.getElementsByTagName('p');
+	var arrUrl=[];
+	var arrText=[];
+	var nowArr=[];
+	for(var i=0;i<aLi.length;i++){
+		arrUrl.push(aLi[i].getElementsByTagName('img')[0].src);
+		arrText.push(aLi[i].getElementsByTagName('p')[0].innerHTML);
+		nowArr.push(i);
+	};
+	var onOff=true;
+	aInput[0].onclick=function(){
+		if(!onOff){
+			nowArr.sort(function(a,b){
+				return a-b;
+			});
+			this.value='从大到小';
+		}else{
+			nowArr.sort(function(a,b){
+				return b-a;
+			});
+			this.value='从小到大';
+		};
+		shift();
+		onOff=!onOff;
+	}
+	aInput[1].onclick=function(){
+		nowArr.sort(function(a,b){
+			return Math.random()-0.5;
+		})
+		shift();
+	};
+	function shift(){
+		for(var i=0;i<nowArr.length;i++){
+			aLi[i].getElementsByTagName('img')[0].src=arrUrl[nowArr[i]];
+			aLi[i].getElementsByTagName('p')[0].innerHTML=arrText[nowArr[i]];
+		};
+	};
+</script>
+</html>

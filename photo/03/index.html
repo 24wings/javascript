@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<style>
+* {margin:0; padding:0;}
+#div1 {position:relative; border:5px solid #00F8FC; width:1280px; height:250px; margin:60px auto; overflow:hidden; }
+#div1 ul {position:absolute; left:0px; }
+#div1 ul li {list-style:none; float:left; width:400px; height:230px; padding:10px;}
+#div1 ul li img {width:400px;}
+#prev { position:absolute; left:10px; top:100px; background:url(img/btn.gif) no-repeat;  z-index:20; width:60px; height:60px; opacity:0.8; }
+#next{position:absolute; right:10px; top:100px; background:url(img/btn.gif) no-repeat 0 -60px;  z-index:2; width:60px; height:60px; opacity:0.8; }
+p{  text-align:center; padding-top:80px; font-size:30px;}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+window.onload=function (){
+	var oDiv=document.getElementById('div1');
+	var oUl=oDiv.getElementsByTagName('ul')[0];
+	var aLi=oUl.getElementsByTagName('li');
+	var aA=document.getElementsByTagName('a');
+	var oPrev =document.getElementById('prev');
+	var oNext =document.getElementById('next');
+	var timer=null;
+	var iSpeed=-2;
+	
+	oUl.innerHTML+=oUl.innerHTML;
+	oUl.style.width=aLi.length*aLi[0].offsetWidth+'px';
+	
+	function fnMove(){
+		if(oUl.offsetLeft<-oUl.offsetWidth/2){
+			oUl.style.left=0;
+		}
+		else if(oUl.offsetLeft>0){
+			oUl.style.left=-oUl.offsetWidth/2+'px';
+		}
+		oUl.style.left=oUl.offsetLeft+iSpeed+'px';
+	}
+	
+	timer=setInterval(fnMove, 30);
+	
+	oPrev.onclick=function (){
+		iSpeed=-2;
+	};
+	oNext.onclick=function (){
+		iSpeed=2;
+	};
+	
+	oDiv.onmouseover=function (){
+		clearInterval(timer);
+	};
+	
+	oDiv.onmouseout=function (){
+		timer=setInterval(fnMove, 30);
+	};
+};
+</script>
+</head>
+
+<body>
+<p>鼠标移入暂停，鼠标移开就开始滚动</p>
+
+<div id="div1">
+	<div id="prev"></div>
+	<ul>
+    	<li><img src="img/1.jpg" /></li>
+    	<li><img src="img/2.jpg" /></li>
+    	<li><img src="img/3.jpg" /></li>
+    	<li><img src="img/4.jpg" /></li>
+    </ul>
+    <div id="next"></div>
+</div>
+
+</body>
+</html>

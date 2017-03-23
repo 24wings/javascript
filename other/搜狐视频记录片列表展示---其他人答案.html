@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>搜狐视频记录片列表展示</title>
+<style>
+body{ font-size: 14px; font-family: "楷体" }
+ul, p,h2,a { padding: 0; margin: 0; }
+li{ list-style: none; }
+a{ text-decoration: none; }
+.show{ display: block; }
+.hide{ display: none; }
+.clear{ zoom:1; }
+.clear:after{ content: ''; clear: both; display: block; }
+.elps{ white-space: nowrap; overflow: hidden; text-overflow:ellipsis;}
+.btn{ display: block; background: #29739c; color: #fff; text-align: center; }
+#list{position: relative; margin: 30px; width: 270px; background: #dee7e7; box-shadow: 0 0 10px #000; padding: 10px; }
+#list h2{ color: #425a6b; }
+#list .title{ position: absolute; right: 10px; top:9px;border-right: 1px #94bdd6 solid;  }
+#list .title a{ float: left; color: #185273; display: block; vertical-align: top; line-height: 25px; height: 25px; border:1px #94bdd6 solid; border-right: none;  border-bottom: none; padding: 0 5px; }
+#list .cur{ background: #fff; }
+#list ul{border-top: 1px #94bdd6 solid; display: none;}
+#list li{ border-bottom: 1px #fff dashed; padding: 0 6px; zoom:1; }
+#list li:after{ content: ''; clear: both; display: block;  }
+#list .num{ float: left; font-size: 12px; line-height: 12px; height: 12px; width: 16px; margin: 6px 0; }
+#list .con{ float: left; width:238px; }
+#list .con .tit{ line-height: 24px; padding-left: 10px; }
+.info{ display: none; }
+#list .info .img{ float: left; width: 84px; height: 64px; border: 1px #94bdd6 solid; padding: 2px; margin: 4px; }
+#list .info .txt{ float: left;height: 70px; width: 140px; margin-top: 4px; color: #185273; font-size: 12px; }
+#list .info img{ width: 84px; height: 64px; }
+#list .info span{ height: 50px; line-height: 17px;  overflow: hidden; text-overflow:ellipsis; display: block; }
+#list .info a{ float: right; line-height:20px;  padding: 0 6px;}
+</style>
+<script>
+window.onload = function(){
+	var oList = document.getElementById('list');
+	var aTitle = document.getElementById('title').getElementsByTagName('a');
+	var aUl = oList.getElementsByTagName('ul');        
+	aUl[0].style.display = 'block';
+
+	var oldTitile = aTitle[0];
+	var oldUl = aUl[0];
+
+	for (var i = 0; i < aTitle.length; i++) {
+			change(aTitle , aUl , i)                
+	}
+
+	for (var i = 0; i < aUl.length; i++) {
+			var aLi = aUl[i].getElementsByTagName('li');
+			var oldLi = aLi[0];
+			var oldTit = aLi[0].getElementsByTagName('p')[0];
+			var oldInfo = aLi[0].getElementsByClassName('info')[0];
+			for (var j = 0; j < aLi.length; j++) {                
+					aLi[j].index = j;
+					var oTit = aLi[j].getElementsByTagName('p')[0];
+					var oInfo = aLi[j].getElementsByClassName('info')[0];
+					aLi[j].onmouseover = function(){
+							oldLi.className = '';
+							oldTit.style.display = 'block';
+							oldInfo.style.display = 'none';
+							oTit = this.getElementsByTagName('p')[0];
+							oInfo = this.getElementsByClassName('info')[0];
+							this.className = 'cur';
+							oTit.style.display = 'none';
+							oInfo.style.display = 'block';
+							oldTit = oTit;
+							oldInfo = oInfo;
+							oldLi = this;
+					}
+			}
+	}
+
+
+	function change(oTit , oCon , i){
+			oTit[i].index = i;
+			oTit[i].onmouseover = function(){
+					oldUl.style.display = 'none';
+					oldTitile.className = '';
+					this.className = 'cur';
+					oCon[this.index].style.display = 'block';
+					oldTitile = this;
+					oldUl = oCon[this.index];
+			}
+	}                                        
+}
+        </script>
+</head>
+<body>
+<div id="list" class="clear">
+<h2>观看排行榜</h2>
+<p id="title" class="title">
+    <a class="cur" href="javascript:;">每日</a>
+    <a href="javascript:;">每周</a>
+    <a href="javascript:;">全部</a>
+</p>
+<ul>
+    <li class="clear">
+            <span class="num btn">1</span>
+            <div class="con">
+                    <p class="elps tit">京冀地区有中到大雪 河北部分高速封闭航班取消</p>
+                    <div class="info clear" >
+                            <div class="img"><img src="images/scroll/11.jpg" alt=""></div>
+                            <div class="txt">
+                                    <span>京京冀地区有中到大雪 河北部分冀地区有中到大雪 河北部分高速封闭航班取消</span>
+                                    <a class="btn" href="#">播放</a>
+                            </div>
+                    </div>
+            </div>
+    </li>
+    <li class="clear">
+            <span class="num btn">2</span>
+            <div class="con">
+                    <p class="elps tit">柯震东晒照仅入镜半张脸 粉丝：好久不见</p>
+                    <div class="info clear" >
+                            <div class="img"><img src="images/scroll/11.jpg" alt=""></div>
+                            <div class="txt">
+                                    <p>京京冀地区有中到大雪 河北部分冀地区有中到大雪 河北部分高速封闭航班取消</p>
+                                    <a class="btn" href="#">播放</a>
+                            </div>
+                    </div>
+            </div>
+    </li>
+    <li class="clear">
+            <span class="num btn">3</span>
+            <div class="con">
+                    <p class="elps tit">老人被刮倒协警跪地保护 涨姿势!这些城市一辆车都没有</p>
+                    <div class="info clear" >
+                            <div class="img"><img src="images/scroll/11.jpg" alt=""></div>
+                            <div class="txt">
+                                    <p>京京冀地区有中到大雪 河北部分冀地区有中到大雪 河北部分高速封闭航班取消</p>
+                                    <a class="btn" href="#">播放</a>
+                            </div>
+                    </div>
+            </div>
+    </li>
+    <li class="clear">
+            <span class="num btn">4</span>
+            <div class="con">
+                    <p class="elps tit">老人被刮倒协警跪地保护 涨姿势!这些城市一辆车都没有</p>
+                    <div class="info clear" >
+                            <div class="img"><img src="images/scroll/11.jpg" alt=""></div>
+                            <div class="txt">
+                                    <p>京京冀地区有中到大雪 河北部分冀地区有中到大雪 河北部分高速封闭航班取消</p>
+                                    <a class="btn" href="#">播放</a>
+                            </div>
+                    </div>
+            </div>
+    </li>
+</ul>
+<ul>
+    <li class="clear">
+            <span class="num btn">11</span>
+            <div class="con">
+                    <p class="elps tit">京冀地区有中到大雪 河北部分高速封闭航班取消</p>
+                    <div class="info clear" >
+                            <div class="img"><img src="images/scroll/11.jpg" alt=""></div>
+                            <div class="txt">
+                                    <span>京京冀地区有中到大雪 河北部分冀地区有中到大雪 河北部分高速封闭航班取消</span>
+                                    <a class="btn" href="#">播放</a>
+                            </div>
+                    </div>
+            </div>
+    </li>
+    <li class="clear">
+            <span class="num btn">2</span>
+            <div class="con">
+                    <p class="elps tit">柯震东晒照仅入镜半张脸 粉丝：好久不见</p>
+                    <div class="info clear" >
+                            <div class="img"><img src="images/scroll/11.jpg" alt=""></div>
+                            <div class="txt">
+                                    <p>京京冀地区有中到大雪 河北部分冀地区有中到大雪 河北部分高速封闭航班取消</p>
+                                    <a class="btn" href="#">播放</a>
+                            </div>
+                    </div>
+            </div>
+    </li>
+    <li class="clear">
+            <span class="num btn">3</span>
+            <div class="con">
+                    <p class="elps tit">老人被刮倒协警跪地保护 涨姿势!这些城市一辆车都没有</p>
+                    <div class="info clear" >
+                            <div class="img"><img src="images/scroll/11.jpg" alt=""></div>
+                            <div class="txt">
+                                    <p>京京冀地区有中到大雪 河北部分冀地区有中到大雪 河北部分高速封闭航班取消</p>
+                                    <a class="btn" href="#">播放</a>
+                            </div>
+                    </div>
+            </div>
+    </li>
+</ul>
+<ul>
+    <li class="clear">
+            <span class="num btn">21</span>
+            <div class="con">
+                    <p class="elps tit">京冀地区有中到大雪 河北部分高速封闭航班取消</p>
+                    <div class="info clear" >
+                            <div class="img"><img src="images/scroll/11.jpg" alt=""></div>
+                            <div class="txt">
+                                    <span>京京冀地区有中到大雪 河北部分冀地区有中到大雪 河北部分高速封闭航班取消</span>
+                                    <a class="btn" href="#">播放</a>
+                            </div>
+                    </div>
+            </div>
+    </li>
+    <li class="clear">
+            <span class="num btn">2</span>
+            <div class="con">
+                    <p class="elps tit">柯震东晒照仅入镜半张脸 粉丝：好久不见</p>
+                    <div class="info clear" >
+                            <div class="img"><img src="images/scroll/11.jpg" alt=""></div>
+                            <div class="txt">
+                                    <p>京京冀地区有中到大雪 河北部分冀地区有中到大雪 河北部分高速封闭航班取消</p>
+                                    <a class="btn" href="#">播放</a>
+                            </div>
+                    </div>
+            </div>
+    </li>
+</ul>
+</div>
+</body>
+</html>

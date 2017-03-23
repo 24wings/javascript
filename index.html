@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>原生js的研究与探索</title>
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+</head>
+<body>
+<div id="particles">
+<div class="shadow intro">
+    <ol id="ol" class="list">
+    </ol>
+</div>
+</div>
+<script type="text/javascript">
+    var str = '',
+        data = [ 
+            [
+                { title : '第一章 表单常用代码'},
+                { url : 'form/1/index.html', title : '去除字符串左右的空格' },
+				{ url : 'form/2/index.html', title : '输入框高亮显示' },
+                { url : 'form/3/index.html', title : '禁止用户输入' },
+                { url : 'form/4/index.html', title : '关闭用户中文输入法' },
+                { url : 'form/5/index.html', title : '禁止用户复制和粘贴' },
+                { url : 'form/6/index.html', title : '限制只能输入数字' },
+                { url : 'form/7/index.html', title : '限制字符串长度' },
+                { url : 'form/8/index.html', title : '仿微博提示可输入剩余字数' },
+                { url : 'form/9/index.html', title : '换行文本自动滚动' },
+				{ url : 'form/10/index.html', title : '拖动滑块验证' },
+                { url : 'form/11/index.html', title : '文本内容进行关键字过滤' }
+            ],
+            [
+                { title : '第二章 常用图片相关代码'},
+                { url : 'photo/01/index.html', title : '鼠标移入移出改变透明度' },
+                { url : 'photo/02/index.html', title : '图片放大镜效果' },
+				{ url : 'photo/03/index.html', title : '无缝滚动——移入暂停' },
+				{ url : 'photo/04/index.html', title : '鼠标移入移出改变图片透明度' },
+				{ url : 'photo/05/index.html', title : '图片随机排序' }
+            ],
+            [
+                { title : '第三章 内容展示常用代码'},
+                { url : 'content/2/index.html', title : '选项卡轮播' },
+                { url : 'content/3/index.html', title : '模拟滚动条' },
+                { url : 'content/4/index.html', title : '跟着滚动条一起滚动' },
+                { url : 'content/6/index.html', title : '单元行上鼠标悬停提示' }
+            ],
+            [
+                { title : '第四章 常用图片轮换'},
+				{ url : 'slide/01/index.html', title : '带缩略图的轮播' },
+				{ url : 'slide/02/index.html', title : '控制多组图片切换' },
+                { url : 'slide/03/index.html', title : '榜单tab切换' },
+				{ url : 'slide/04/index.html', title : '自动改变轮播方向' },
+                { url : 'slide/05/index.html', title : '米4-活动页面' },
+				{ url : 'slide/06/index.html', title : '防FLASH轮播' },
+                { url : 'slide/07/index.html', title : '图片轮换' },
+				{ url : 'slide/08/index.html', title : '从0到N不停轮换' },
+                { url : 'slide/09/index.html', title : '轮换－整个翻页' }
+            ],
+            [
+                { title : '第五章 导航条'},
+                { url : 'nav/01/index.html', title : '导航条01' },
+				{ url : 'nav/02/index.html', title : '导航条02' },
+				{ url : 'nav/03/index.html', title : '导航条03' },
+				{ url : 'nav/04/index.html', title : '导航条04' }
+            ],
+            [
+                { title : '第六章 时间日期效果'},
+                { url : 'time/01/index.html', title : 'canvas实现小时钟' },
+				{ url : 'time/02/index.html', title : '数字时间' }
+            ],
+            [
+                { title : '第七章 其它原生JS效果'},
+                { url : 'other/1/index.html', title : '文字搬运工' },
+				{ url : 'other/2/index.html', title : '点击展开、收缩' },
+				{ url : 'other/3/index.html', title : '酷炫轮播图' }
+            ]
+        ];
+    for(var i = 0; i < data.length; i++){
+        var items = data[i];
+        var sub = '';
+        for(var j=0; j<items.length; j++){
+            var son = items[j];
+            if(j == 0){
+                sub += '<li><h1><a href="javascript:;" >' + son.title + '</a></h1><dl class="sub-dl">';
+            } else {
+                sub += '<dd><a href="' + son.url + '" target="_blank">' + son.title + '</a></dd>';
+            }
+            if(j == items.length - 1){
+                sub += '</dl></li>';
+            }
+        }
+        str += sub;
+    }
+    var ol = document.getElementById('ol');
+    ol.innerHTML = str;
+    var h1 = ol.getElementsByTagName('h1');
+    var dl = ol.getElementsByTagName('dl');
+    var tmp = -1;
+    var open = false;
+    for(var i=0; i < h1.length; i++){
+        h1[i].index = i;
+        h1[i].onclick = function(){
+            for(var i=0; i<h1.length; i++){
+                dl[i].style.display = 'none';
+            }
+            if(tmp == this.index && open){
+                dl[this.index].style.display = 'none';
+                open = false;
+            } else {
+                dl[this.index].style.display = 'block';
+                open = true;
+            }
+            tmp = this.index;
+        }
+    }
+</script>
+<script type='text/javascript' src='http://apps.bdimg.com/libs/jquery/2.0.1/jquery.min.js'></script>
+<script type='text/javascript' src='js/jquery.particleground.min.js'></script>
+<script type='text/javascript' src='js/demo.js'></script>
+</body>
+</html>

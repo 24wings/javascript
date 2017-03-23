@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<style>
+p { border:10px solid #ccc; background:#FFC; width:400px; padding:20px; font-size:18px; font-family:微软雅黑; margin:40px auto 0; line-height:30px;} 
+
+a{ font-weight:bold; color:red;}
+</style>
+
+<script>
+window.onload = function (){
+	var oP = document.getElementsByTagName('p')[0];
+	var oSpan = document.getElementsByTagName('span')[0];
+	var oA = document.getElementsByTagName('a')[0];
+	var str = oSpan.innerHTML;
+	var onOff = true;
+	
+	oA.onclick = function (){
+		if (onOff){
+			oSpan.innerHTML = str.substring( 0,36);
+			oA.innerHTML = '>>展开';
+			onOff = false;
+			}else{
+				oSpan.innerHTML = str;
+				oA.innerHTML = '>>收缩';
+				onOff = true;
+				};
+	//			onOff = !onOff;
+		};
+			
+};
+
+
+
+/*window.onload = function () {
+	var oP = document.getElementsByTagName('p')[0];
+	var oSpan = oP.getElementsByTagName('span')[0];
+	var oA = oP.getElementsByTagName('a')[0];
+	var str = oSpan.innerHTML;
+	var onOff = true;
+	
+	oA.onclick = function () {
+		if ( onOff ) {
+			oSpan.innerHTML = str.substring(0, 18);
+			oA.innerHTML = '>>展开';
+		} else {
+			oSpan.innerHTML = str;
+			oA.innerHTML = '>>收缩';
+		}
+		onOff = !onOff;
+	};
+};*/
+
+</script>
+
+</head>
+
+<body>
+<p><span>人生百味，看世事无常，看沧桑变化；冷暖人生路，岂能事事尽如如意。<br>
+  古人云：“得意不忘形，末路不怠慌。”当我们处于逆境、甚至是末路的时候，应该不怠慢不慌张，心存愿望，敬承天命，但行好事，莫问前程。只有保持这样的心态，我们才能跟时间做朋友，与时间一起演绎我们的人生。种下自己的愿望，然后静静的等待，让愿望以自己的方式，发芽、成长、开花、结果。</span>……<a href="#">&gt;&gt;收缩</a></p>
+</body>
+</html>
